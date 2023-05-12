@@ -1,6 +1,5 @@
 package com.hawk.dslist.entities;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -11,13 +10,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "game")
-public class Gamer implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
+@Table(name = "tb_game")
+public class Game{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
 	
@@ -26,17 +23,21 @@ public class Gamer implements Serializable {
 	private String genre;
 	private String platforms;
 	private Double score;
+	
+	@Column(name = "img_url")
 	private String imgUrl;
+	
+	@Column(name = "short_description", columnDefinition = "TEXT")
 	private String shortDescription;
+	
+	@Column(name = "long_description", columnDefinition = "TEXT")
 	private String longDescription;
 
-	public Gamer() {
-		// TODO Auto-generated constructor stub
+	public Game() {
 	}
 
-	public Gamer(Long id, String title, Integer year, String genre, String platforms, Double score, String imgUrl,
+	public Game(Long id, String title, Integer year, String genre, String platforms, Double score, String imgUrl,
 			String shortDescription, String longDescription) {
-		super();
 		this.id = id;
 		this.title = title;
 		this.year = year;
@@ -133,7 +134,7 @@ public class Gamer implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Gamer other = (Gamer) obj;
+		Game other = (Game) obj;
 		return Objects.equals(id, other.id);
 	}
 	
